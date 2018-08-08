@@ -15,7 +15,7 @@
     </modules>
     <packaging>pom</packaging>
 
-    <nicename>moonce</nicename>
+    <name>moonce</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>

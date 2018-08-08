@@ -9,7 +9,7 @@
 
     <contextName>logback</contextName>
     <!-- name的值是变量的名称，value的值时变量定义的值。通过定义的值会被插入到logger上下文中。定义变量后，可以使“${}”来使用变量。 -->
-    <property nicename="log.path" value="C:/Users/22901/Work/Log/moonce" />
+    <property name="log.path" value="C:/Users/22901/Work/Log/moonce" />
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
@@ -17,11 +17,11 @@
     <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
     <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
     <!-- 彩色日志格式 -->
-    <property nicename="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
 
     <!--输出到控制台-->
-    <appender nicename="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>info</level>
@@ -37,7 +37,7 @@
     <!--输出到文件-->
 
     <!-- 时间滚动输出 level为 DEBUG 日志 -->
-    <appender nicename="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
         <file>${log.path}/log_debug.log</file>
         <!--日志文件输出格式-->
@@ -64,7 +64,7 @@
     </appender>
 
     <!-- 时间滚动输出 level为 INFO 日志 -->
-    <appender nicename="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
         <file>${log.path}/log_info.log</file>
         <!--日志文件输出格式-->
@@ -91,7 +91,7 @@
     </appender>
 
     <!-- 时间滚动输出 level为 WARN 日志 -->
-    <appender nicename="WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
         <file>${log.path}/log_warn.log</file>
         <!--日志文件输出格式-->
@@ -118,7 +118,7 @@
 
 
     <!-- 时间滚动输出 level为 ERROR 日志 -->
-    <appender nicename="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
         <file>${log.path}/log_error.log</file>
         <!--日志文件输出格式-->
@@ -147,14 +147,14 @@
         <logger>用来设置某一个包或者具体的某一个类的日志打印级别、
         以及指定<appender>。<logger>仅有一个name属性，
         一个可选的level和一个可选的addtivity属性。
-        nicename:用来指定受此logger约束的某一个包或者具体的某一个类。
+        name:用来指定受此logger约束的某一个包或者具体的某一个类。
         level:用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF，
               还有一个特俗值INHERITED或者同义词NULL，代表强制执行上级的级别。
               如果未设置此属性，那么当前logger将会继承上级的级别。
         addtivity:是否向上级logger传递打印信息。默认是true。
     -->
-    <!--<logger nicename="org.springframework.web" level="info"/>-->
-    <!--<logger nicename="org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor" level="INFO"/>-->
+    <!--<logger name="org.springframework.web" level="info"/>-->
+    <!--<logger name="org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor" level="INFO"/>-->
     <!--
         使用mybatis的时候，sql语句是debug下才会打印，而这里我们只配置了info，所以想要查看sql语句的话，有以下两种操作：
         第一种把<root level="info">改成<root level="DEBUG">这样就会打印sql，不过这样日志那边会出现很多其他消息
@@ -170,8 +170,8 @@
     -->
 
     <!--开发环境:打印控制台-->
-    <springProfile nicename="dev">
-        <logger nicename="com.moonce" level="debug"/>
+    <springProfile name="dev">
+        <logger name="com.moonce" level="debug"/>
         <root level="info">
             <appender-ref ref="CONSOLE" />
             <!--<appender-ref ref="DEBUG_FILE" />-->
@@ -184,7 +184,7 @@
 
 
     <!--生产环境:输出到文件-->
-    <springProfile nicename="issue">
+    <springProfile name="issue">
     <root level="info">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="DEBUG_FILE" />
