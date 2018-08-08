@@ -1,0 +1,15 @@
+# 启用端口号
+server:
+  port: 8081
+spring:
+# 数据库连接信息
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://119.23.63.182/mooncedb?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: MLYCloud1788%
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #默认为MyISAM,无法实现事务
