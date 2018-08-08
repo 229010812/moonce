@@ -2,6 +2,8 @@ package com.moonce.blog.controller;
 
 import com.moonce.blog.service.UserService;
 import com.moonce.doman.User;
+import com.moonce.util.CommonUtils;
+import com.moonce.util.constant.Code;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -54,14 +56,14 @@ public class UserController {
                          @RequestParam(name = "nicename") String nicename,
                          @RequestParam(name = "url",required = false) String url,
                          @RequestParam(name = "tel",required = false) String tel,
-                         @RequestParam(name = "birthday",required = false) Date birthday,
+                         @RequestParam(name = "birthday",required = false) String birthday,
                          @RequestParam(name = "sex",required = false,defaultValue = "0") byte sex
     ){
         User user = new User();
         user.setUserLogin(userLogin);
         user.setPassword(password);
         user.setEmail(email);
-        user.setBirthday(birthday);
+        user.setBirthday(CommonUtils.stringCastToDate(birthday, Code.YYYY_MM_DD));
         user.setSex(sex);
         user.setTel(tel);
         user.setUrl(url);

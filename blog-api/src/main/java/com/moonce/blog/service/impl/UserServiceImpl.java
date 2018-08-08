@@ -45,9 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public User register(User user) {
-        if(userRepository.findByUsername(user.getUserLogin())!=null){
-            return null;
-        }
+
         userRepository.save(user);
         //添加登录通行证
         UserVerification userVerification = new UserVerification();
@@ -57,6 +55,7 @@ public class UserServiceImpl implements UserService {
         userVerificationRepository.save(userVerification);
         if(!"".equals(user.getEmail())){
             userVerification=new UserVerification();
+            userVerification.setUserId(user.getId());
             userVerification.setType("email");//邮箱类型
             userVerification.setAccount(user.getEmail());
             userVerification.setPassword(user.getPassword());
@@ -64,6 +63,7 @@ public class UserServiceImpl implements UserService {
         }
         if(!"".equals(user.getTel())){
             userVerification=new UserVerification();
+            userVerification.setUserId(user.getId());
             userVerification.setType("tel");//手机号类型
             userVerification.setAccount(user.getTel());
             userVerification.setPassword(user.getPassword());

@@ -14,10 +14,6 @@ import javax.transaction.Transactional;
  */
 @Transactional
 public interface UserRepository extends JpaRepository<User,Integer> {
-    User findByUsernameAndAndPassword(String username,String password);
-
-    User findByUsername(String username);
-
 
     @Modifying
     @Query(value = "UPDATE com.moonce.doman.User u SET u.email= :email WHERE u.id= :id ")

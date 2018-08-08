@@ -40,7 +40,7 @@ public class User {
     @Column(name = "user_email", nullable = false, length = 30)
     private String email;
     /** 网站*/
-    @Column(name = "user_url", nullable = false, length = 30)
+    @Column(name = "user_url", length = 30)
     private String url;
     /** 注册时间*/
     @Column(name = "user_registered")
@@ -48,6 +48,7 @@ public class User {
     /** 用户状态*/
     @Column(name = "user_status", nullable = false, length = 30)
     private String status;
+    /** 显示名称*/
     @Column(name = "display_name", nullable = false, length = 30)
     private String displayName;
     /** 手机号*/
