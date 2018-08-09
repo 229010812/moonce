@@ -1,9 +1,15 @@
 package com.moonce.blog.controller;
 
 import com.moonce.blog.service.UserService;
+import com.moonce.doman.Msg;
 import com.moonce.doman.User;
 import com.moonce.util.CommonUtils;
+import com.moonce.util.EncryptionPWDUtil;
+import com.moonce.util.LogUtils;
+import com.moonce.util.ResultUtil;
 import com.moonce.util.constant.Code;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -17,6 +23,8 @@ import java.util.Date;
 public class UserController {
 
     private UserService userService;
+
+    private Logger logger =  LoggerFactory.getLogger(this.getClass());
 
     @Resource
     public void setUserService(UserService userService) {
@@ -32,7 +40,7 @@ public class UserController {
     @GetMapping(value = "/sign-in")
     public User signIn(@RequestParam("username") String username,
                        @RequestParam("password") String password){
-        return userService.signIn(username,password);
+        return userService.signIn(username,EncryptionPWDUtil.encode(password));
     }
 
 
@@ -50,18 +58,18 @@ public class UserController {
      * @return 如果注册成功,返回<code>User</code>,失败返回<code>null</code>
      */
     @PostMapping(value = "/register")
-    public User register(@RequestParam(name = "userLogin") String userLogin,
-                         @RequestParam(name = "password") String password,
-                         @RequestParam(name = "email",required = false) String email,
-                         @RequestParam(name = "nicename") String nicename,
-                         @RequestParam(name = "url",required = false) String url,
-                         @RequestParam(name = "tel",required = false) String tel,
-                         @RequestParam(name = "birthday",required = false) String birthday,
-                         @RequestParam(name = "sex",required = false,defaultValue = "0") byte sex
+    public Msg register(@RequestParam(name = "userLogin") String userLogin,
+                        @RequestParam(name = "password") String password,
+                        @RequestParam(name = "email",required = false) String email,
+                        @RequestParam(name = "nicename") String nicename,
+                        @RequestParam(name = "url",required = false) String url,
+                        @RequestParam(name = "tel",required = false) String tel,
+                        @RequestParam(name = "birthday",required = false) String birthday,
+                        @RequestParam(name = "sex",required = false,defaultValue = "0") byte sex
     ){
         User user = new User();
         user.setUserLogin(userLogin);
-        user.setPassword(password);
+        user.setPassword(EncryptionPWDUtil.encode(password));
         user.setEmail(email);
         user.setBirthday(CommonUtils.stringCastToDate(birthday, Code.YYYY_MM_DD));
         user.setSex(sex);
@@ -72,23 +80,45 @@ public class UserController {
         user.setStatus("register");
         user.setDisplayName(nicename);
         user.setNicename(nicename);
-
-        return userService.register(user);
+        try{
+            return ResultUtil.success(userService.register(user));
+        }catch (Exception e){
+            logger.error(LogUtils.getException(e));
+        }
+        return ResultUtil.error(Code.FAILED,"注册失败");
     }
 
     /**
      * 用户资料修改
      */
     @PutMapping(value = "/user/{id}")
-    public String updateUser(@PathVariable("id") Integer id,
+    public Msg updateUser(@PathVariable("id") Integer id,
                              @RequestParam(name = "userLogin",required = false) String userLogin,
                              @RequestParam(name = "password",required = false) String password,
                              @RequestParam(name = "email",required = false) String email,
                              @RequestParam(name = "nicename",required = false) String nicename,
                              @RequestParam(name = "url",required = false) String url,
                              @RequestParam(name = "tel",required = false) String tel,
-                             @RequestParam(name = "birthday",required = false) Date birthday,
+                             @RequestParam(name = "birthday",required = false) String birthday,
                              @RequestParam(name = "sex",required = false,defaultValue = "0") byte sex){
-        return null;
+        User user = new User();
+        user.setUserLogin(userLogin);
+        user.setPassword(EncryptionPWDUtil.encode(password));
+        user.setEmail(email);
+        user.setBirthday(CommonUtils.stringCastToDate(birthday, Code.YYYY_MM_DD));
+        user.setSex(sex);
+        user.setTel(tel);
+        user.setUrl(url);
+        user.setGrade(0);
+        user.setRegistered(new Date());
+        user.setStatus("register");
+        user.setDisplayName(nicename);
+        user.setNicename(nicename);
+        try{
+            return ResultUtil.success(userService.updateUser(user));
+        }catch (Exception e){
+            logger.error(LogUtils.getException(e));
+        }
+        return ResultUtil.error(Code.FAILED,"注册失败");
     }
 }

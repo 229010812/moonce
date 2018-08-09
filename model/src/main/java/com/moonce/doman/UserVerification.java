@@ -12,7 +12,8 @@ import java.util.Date;
 public class UserVerification {
     /** 通行证ID*/
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
+    @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")
     private Integer id;
     /** 用户ID*/
     @Column(name = "user_id")
@@ -20,12 +21,16 @@ public class UserVerification {
     /** 通行证类型 username 默认用户名 email 邮箱 tel手机号 qq QQ  we-chat 微信*/
     private String type;
     /** 账户*/
+    @Column(name = "account",unique = true,nullable = false)
     private String account;
     /** 密码*/
+    @Column(name = "password",nullable = false,length = 32)
     private String password;
     /** 过期日期*/
+    @Column(name = "expiration_date")
     private Date expirationDate;
     /** 创建时间*/
+    @Column(name = "create_date")
     private Date createDate;
 
     public UserVerification() {

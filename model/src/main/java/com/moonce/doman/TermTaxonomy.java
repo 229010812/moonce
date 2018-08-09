@@ -1,9 +1,6 @@
 package com.moonce.doman;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * 存储分类和标签的描述信息、父子关系、所属包含的文章数等；
@@ -19,7 +16,8 @@ import javax.persistence.Id;
 public class TermTaxonomy {
     /** term_taxonomy_id：自定义分类 ID 自增*/
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
+    @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")
     @Column(name = "term_taxonomy_id")
     private Integer termTaxonomyID;
     /** term_id：分类 ID */

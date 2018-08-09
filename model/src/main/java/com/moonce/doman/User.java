@@ -1,9 +1,6 @@
 package com.moonce.doman;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -23,7 +20,8 @@ import java.util.Date;
 public class User {
     /** 用户id 自增唯一*/
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
+    @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")
     private Integer id;
 
     /** 登录名*/
@@ -31,7 +29,7 @@ public class User {
     private String userLogin;
 
     /** 密码*/
-    @Column(name = "user_pass", nullable = false, length = 30)
+    @Column(name = "user_pass", nullable = false, length = 32)
     private String password;
     /** 昵称*/
     @Column(name = "user_nicename", nullable = false, length = 30)

@@ -1,9 +1,6 @@
 package com.moonce.doman;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * 存储评论信息，如评论内容、评论所属文章、评论人昵称、邮箱、URL 等；
@@ -15,7 +12,8 @@ public class Comments {
     }
     /** 自增唯一 ID*/
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
+    @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")
     @Column(name = "comment_id")
     private Integer id;
     /** 对应文章 ID*/

@@ -1,9 +1,6 @@
 package com.moonce.doman;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * 存储 WordPress 系统默认及后台系统选项、插件及主题配置信息，包括网站标题、副标题、当前主题等等
@@ -13,7 +10,8 @@ import javax.persistence.Id;
 public class Options {
     /** option_id：自增唯一 ID*/
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
+    @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")
     @Column(name = "option_id")
     private Integer optionID;
     /** blog_id：博客 ID，用于多用户博客，默认 0*/

@@ -45,32 +45,39 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public User register(User user) {
-
+        //保存用户
         userRepository.save(user);
         //添加登录通行证
-        UserVerification userVerification = new UserVerification();
-        userVerification.setUserId(user.getId());
-        userVerification.setAccount(user.getUserLogin());
-        userVerification.setPassword(user.getPassword());
-        userVerificationRepository.save(userVerification);
-        if(!"".equals(user.getEmail())){
-            userVerification=new UserVerification();
-            userVerification.setUserId(user.getId());
-            userVerification.setType("email");//邮箱类型
-            userVerification.setAccount(user.getEmail());
-            userVerification.setPassword(user.getPassword());
-            userVerificationRepository.save(userVerification);
-        }
-        if(!"".equals(user.getTel())){
-            userVerification=new UserVerification();
-            userVerification.setUserId(user.getId());
-            userVerification.setType("tel");//手机号类型
-            userVerification.setAccount(user.getTel());
-            userVerification.setPassword(user.getPassword());
-            userVerificationRepository.save(userVerification);
-        }
-
+        addUserVerification(user.getId(),"username",user.getUserLogin(),user.getPassword());
+        if(!"".equals(user.getEmail()))//添加邮箱登录通行证
+            addUserVerification(user.getId(),"email",user.getEmail(),user.getPassword());
+        if(!"".equals(user.getTel())) //添加手机登录通行证
+            addUserVerification(user.getId(),"tel",user.getTel(),user.getPassword());
         return user;
+    }
+
+    @Override
+    public User updateUser(User user) {
+       User user1 =  userRepository.findById(user.getId()).get();
+        //保存用户
+        userRepository.save(user);
+        return user;
+    }
+
+    /**
+     * 添加用户通行证
+     * @param id
+     * @param type
+     * @param account
+     * @param password
+     */
+    private void addUserVerification(Integer id,String type,String account,String password){
+        UserVerification userVerification = new UserVerification();
+        userVerification.setUserId(id);
+        userVerification.setType(type);
+        userVerification.setAccount(account);
+        userVerification.setPassword(password);
+        userVerificationRepository.save(userVerification);
     }
 
 

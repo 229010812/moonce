@@ -1,4 +1,4 @@
-package com.moonce.blog.web;
+package com.moonce.blog.config;
 
 import com.moonce.blog.service.OptionsService;
 import org.springframework.beans.factory.annotation.Autowired;

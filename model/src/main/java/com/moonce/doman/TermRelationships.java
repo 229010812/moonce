@@ -1,9 +1,6 @@
 package com.moonce.doman;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * 存储文章和分类、标签的相互对应关系
@@ -13,7 +10,8 @@ import javax.persistence.Id;
 public class TermRelationships {
     /** 自增ID*/
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
+    @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")
     @Column(name = "term_relationships_id")
     private Integer termRelationshipsID;
     /** object_id：对应文章 ID/链接 ID*/
