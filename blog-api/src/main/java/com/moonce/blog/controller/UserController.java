@@ -1,8 +1,9 @@
 package com.moonce.blog.controller;
 
 import com.moonce.blog.service.UserService;
-import com.moonce.doman.Msg;
+import com.moonce.doman.vo.Msg;
 import com.moonce.doman.User;
+import com.moonce.repository.UserRepository;
 import com.moonce.util.CommonUtils;
 import com.moonce.util.EncryptionPWDUtil;
 import com.moonce.util.LogUtils;
@@ -25,6 +26,13 @@ public class UserController {
     private UserService userService;
 
     private Logger logger =  LoggerFactory.getLogger(this.getClass());
+
+    private UserRepository userRepository;
+
+    @Resource
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Resource
     public void setUserService(UserService userService) {
@@ -97,28 +105,24 @@ public class UserController {
                              @RequestParam(name = "password",required = false) String password,
                              @RequestParam(name = "email",required = false) String email,
                              @RequestParam(name = "nicename",required = false) String nicename,
+                             @RequestParam(name = "displayName",required = false) String displayName,
                              @RequestParam(name = "url",required = false) String url,
                              @RequestParam(name = "tel",required = false) String tel,
                              @RequestParam(name = "birthday",required = false) String birthday,
+                             @RequestParam(name = "status",required = false) String status,
                              @RequestParam(name = "sex",required = false,defaultValue = "0") byte sex){
-        User user = new User();
-        user.setUserLogin(userLogin);
-        user.setPassword(EncryptionPWDUtil.encode(password));
-        user.setEmail(email);
-        user.setBirthday(CommonUtils.stringCastToDate(birthday, Code.YYYY_MM_DD));
-        user.setSex(sex);
-        user.setTel(tel);
-        user.setUrl(url);
-        user.setGrade(0);
-        user.setRegistered(new Date());
-        user.setStatus("register");
-        user.setDisplayName(nicename);
-        user.setNicename(nicename);
+
         try{
-            return ResultUtil.success(userService.updateUser(user));
+            return userService.updateUser(id,userLogin,password,email,nicename,displayName,url,tel,birthday,status, sex);
         }catch (Exception e){
             logger.error(LogUtils.getException(e));
         }
         return ResultUtil.error(Code.FAILED,"注册失败");
+    }
+
+    @GetMapping("/users")
+    public Msg userList(@RequestParam(name = "pageNum") Integer pageNum,
+                        @RequestParam(name = "pageSize") Integer pageSize){
+        return userService.userList(pageNum,pageSize);
     }
 }

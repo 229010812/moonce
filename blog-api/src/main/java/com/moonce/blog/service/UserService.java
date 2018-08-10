@@ -1,6 +1,7 @@
 package com.moonce.blog.service;
 
 
+import com.moonce.doman.vo.Msg;
 import com.moonce.doman.User;
 
 public interface UserService {
@@ -8,5 +9,7 @@ public interface UserService {
 
     User register(User user);
 
-    User updateUser(User user);
+    Msg updateUser(Integer id, String userLogin, String password, String email, String nicename, String displayName, String url, String tel, String birthday, String status, byte sex);
+
+    Msg userList(Integer pageNum, Integer pageSize);
 }

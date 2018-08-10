@@ -1,6 +1,6 @@
 package com.moonce.util;
 
-import com.moonce.doman.Msg;
+import com.moonce.doman.vo.Msg;
 import com.moonce.util.constant.Code;
 
 public class ResultUtil {

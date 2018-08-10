@@ -1,4 +1,4 @@
-package com.moonce.doman;
+package com.moonce.doman.vo;
 
 public class Msg<T> {
     /** 错误码*/
@@ -32,5 +32,14 @@ public class Msg<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Msg{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data.toString() +
+                '}';
     }
 }
