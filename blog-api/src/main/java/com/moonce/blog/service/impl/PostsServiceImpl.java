@@ -7,6 +7,7 @@ import com.moonce.doman.vo.Msg;
 import com.moonce.repository.PostsRepository;
 import com.moonce.repository.TermRelationshipsRepository;
 import com.moonce.util.ResultUtil;
+import com.moonce.util.UpdateTool;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -43,6 +44,7 @@ public class PostsServiceImpl implements PostsService {
         Date postModified = new Date();
         Posts posts = new Posts(postAuthorID,postDate,postContent,postTitle,postExcerpt,postStatus,commentStatus,postPassword,postName,postModified,postParent,guid,menuOrder,postType,commentCount);
         posts.setId(id);
+        UpdateTool.copyNullProperties(postsRepository.findById(id).get(),posts);
         postsRepository.save(posts);
         return ResultUtil.success(posts);
     }
