@@ -11,5 +11,5 @@ public interface UserService {
 
     Msg updateUser(Integer id, String userLogin, String password, String email, String nicename, String displayName, String url, String tel, String birthday, String status, byte sex);
 
-    Msg userList(Integer pageNum, Integer pageSize);
+    Msg userListPage(Integer pageNum, Integer pageSize);
 }

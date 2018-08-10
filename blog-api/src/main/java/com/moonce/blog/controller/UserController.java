@@ -21,6 +21,7 @@ import java.util.Date;
  * {@link User}{@link UserService}
  */
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     private UserService userService;
@@ -120,9 +121,15 @@ public class UserController {
         return ResultUtil.error(Code.FAILED,"注册失败");
     }
 
+    /**
+     * 用户列表分页查询
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/users")
-    public Msg userList(@RequestParam(name = "pageNum") Integer pageNum,
+    public Msg userListPage(@RequestParam(name = "pageNum") Integer pageNum,
                         @RequestParam(name = "pageSize") Integer pageSize){
-        return userService.userList(pageNum,pageSize);
+        return userService.userListPage(pageNum,pageSize);
     }
 }

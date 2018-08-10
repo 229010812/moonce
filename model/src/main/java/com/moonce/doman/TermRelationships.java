@@ -27,6 +27,20 @@ public class TermRelationships {
     public TermRelationships() {
     }
 
+    public TermRelationships(Integer objectID, Integer termTaxonomyID, String termOrder) {
+        this.objectID = objectID;
+        this.termTaxonomyID = termTaxonomyID;
+        this.termOrder = termOrder;
+    }
+
+    public Integer getTermRelationshipsID() {
+        return termRelationshipsID;
+    }
+
+    public void setTermRelationshipsID(Integer termRelationshipsID) {
+        this.termRelationshipsID = termRelationshipsID;
+    }
+
     @Override
     public String toString() {
         return "TermRelationships{" +

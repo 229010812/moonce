@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Msg userList(Integer pageNum, Integer pageSize) {
+    public Msg userListPage(Integer pageNum, Integer pageSize) {
         Pageable pageable = new PageRequest(pageNum-1,pageSize);
         Page<User> userList = userRepository.findByUserLoginLike("%", pageable);
         PageVo pageVo = new PageVo(userList);

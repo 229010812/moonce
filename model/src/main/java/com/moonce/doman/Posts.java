@@ -17,7 +17,7 @@ public class Posts {
     private Integer id;
     /** 对应作者 ID*/
     @Column(name = "post_author")
-    private Integer postAuthorId;
+    private Integer postAuthorID;
     /** 发布时间*/
     @Column(name = "post_date")
     private Date postDate;
@@ -44,7 +44,7 @@ public class Posts {
     private String postName;
     /** 修改时间*/
     @Column(name = "post_modified")
-    private String postModified;
+    private Date postModified;
     /** 父文章，主要用于 PAGE*/
     @Column(name = "post_parent")
     private String postParent;
@@ -68,7 +68,7 @@ public class Posts {
     public String toString() {
         return "Posts{" +
                 "id=" + id +
-                ", postAuthorId=" + postAuthorId +
+                ", postAuthorID=" + postAuthorID +
                 ", postDate=" + postDate +
                 ", postContent='" + postContent + '\'' +
                 ", postTitle='" + postTitle + '\'' +
@@ -86,6 +86,24 @@ public class Posts {
                 '}';
     }
 
+    public Posts(Integer postAuthorID, Date postDate, String postContent, String postTitle, String postExcerpt, String postStatus, String commentStatus, String postPassword, String postName, Date postModified, String postParent, String guid, String menuOrder, String postType, long commentCount) {
+        this.postAuthorID = postAuthorID;
+        this.postDate = postDate;
+        this.postContent = postContent;
+        this.postTitle = postTitle;
+        this.postExcerpt = postExcerpt;
+        this.postStatus = postStatus;
+        this.commentStatus = commentStatus;
+        this.postPassword = postPassword;
+        this.postName = postName;
+        this.postModified = postModified;
+        this.postParent = postParent;
+        this.guid = guid;
+        this.menuOrder = menuOrder;
+        this.postType = postType;
+        this.commentCount = commentCount;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -94,12 +112,12 @@ public class Posts {
         this.id = id;
     }
 
-    public Integer getPostAuthorId() {
-        return postAuthorId;
+    public Integer getPostAuthorID() {
+        return postAuthorID;
     }
 
-    public void setPostAuthorId(Integer postAuthorId) {
-        this.postAuthorId = postAuthorId;
+    public void setPostAuthorID(Integer postAuthorID) {
+        this.postAuthorID = postAuthorID;
     }
 
     public Date getPostDate() {
@@ -166,11 +184,11 @@ public class Posts {
         this.postName = postName;
     }
 
-    public String getPostModified() {
+    public Date getPostModified() {
         return postModified;
     }
 
-    public void setPostModified(String postModified) {
+    public void setPostModified(Date postModified) {
         this.postModified = postModified;
     }
 
