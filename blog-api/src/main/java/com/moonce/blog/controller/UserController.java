@@ -21,7 +21,7 @@ import java.util.Date;
  * {@link User}{@link UserService}
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/V1")
 public class UserController {
 
     private UserService userService;

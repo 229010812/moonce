@@ -63,6 +63,17 @@ public class PageVo<T> {
     public PageVo() {
     }
 
+    @Override
+    public String toString() {
+        return "PageVo{" +
+                "pageNum=" + pageNum +
+                ", totalPages=" + totalPages +
+                ", total=" + total +
+                ", pageSize=" + pageSize +
+                ", list=" + list.toString() +
+                '}';
+    }
+
     public PageVo(Page<T> page) {
         this.pageNum = page.getNumber()+1;
         this.totalPages = page.getTotalPages();

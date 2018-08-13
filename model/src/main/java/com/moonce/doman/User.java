@@ -69,6 +69,22 @@ public class User {
     public User() {
     }
 
+    public User(String userLogin, String password, String nicename, String email, String url, Date registered, String status, String displayName, String tel, Integer grade, Date birthday, byte sex, String activationKey) {
+        this.userLogin = userLogin;
+        this.password = password;
+        this.nicename = nicename;
+        this.email = email;
+        this.url = url;
+        this.registered = registered;
+        this.status = status;
+        this.displayName = displayName;
+        this.tel = tel;
+        this.grade = grade;
+        this.birthday = birthday;
+        this.sex = sex;
+        this.activationKey = activationKey;
+    }
+
     public String getUrl() {
         return url;
     }
