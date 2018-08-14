@@ -1,6 +1,7 @@
 package com.moonce.doman;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ import java.util.Date;
  *
  */
 @Entity(name = "m_user")
-public class User {
+public class User implements Serializable {
     /** 用户id 自增唯一*/
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
