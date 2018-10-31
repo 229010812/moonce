@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 
 /**
  * 评论模块 Controller
- * {@link com.moonce.doman.Comments}{@link CommentsService}
+ * {@link com.moonce.blog.doman.Comments}{@link CommentsService}
  */
 @RestController
 @RequestMapping("/comments")

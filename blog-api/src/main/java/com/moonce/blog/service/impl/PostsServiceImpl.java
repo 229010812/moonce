@@ -1,13 +1,13 @@
 package com.moonce.blog.service.impl;
 
 import com.moonce.blog.service.PostsService;
-import com.moonce.doman.Posts;
-import com.moonce.doman.TermRelationships;
-import com.moonce.doman.vo.Msg;
-import com.moonce.repository.PostsRepository;
-import com.moonce.repository.TermRelationshipsRepository;
-import com.moonce.util.ResultUtil;
-import com.moonce.util.UpdateTool;
+import com.moonce.blog.doman.Posts;
+import com.moonce.blog.doman.TermRelationships;
+import com.moonce.blog.doman.vo.Msg;
+import com.moonce.blog.repository.PostsRepository;
+import com.moonce.blog.repository.TermRelationshipsRepository;
+import com.moonce.blog.util.ResultUtil;
+import com.moonce.blog.util.UpdateTool;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

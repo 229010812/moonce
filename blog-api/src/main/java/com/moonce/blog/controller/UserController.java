@@ -1,14 +1,14 @@
 package com.moonce.blog.controller;
 
 import com.moonce.blog.service.UserService;
-import com.moonce.doman.vo.Msg;
-import com.moonce.doman.User;
-import com.moonce.repository.UserRepository;
-import com.moonce.util.CommonUtils;
-import com.moonce.util.EncryptionPWDUtil;
-import com.moonce.util.LogUtils;
-import com.moonce.util.ResultUtil;
-import com.moonce.util.constant.Code;
+import com.moonce.blog.doman.vo.Msg;
+import com.moonce.blog.doman.User;
+import com.moonce.blog.repository.UserRepository;
+import com.moonce.blog.util.CommonUtils;
+import com.moonce.blog.util.EncryptionPWDUtil;
+import com.moonce.blog.util.LogUtils;
+import com.moonce.blog.util.ResultUtil;
+import com.moonce.blog.util.constant.Code;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;

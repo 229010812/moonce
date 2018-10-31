@@ -1,12 +1,11 @@
 package com.moonce.test;
 
-import com.moonce.MoonceApplication;
+import com.moonce.blog.MoonceApplication;
 import com.moonce.blog.service.UserService;
-import com.moonce.doman.User;
-import com.moonce.repository.UserRepository;
-import com.moonce.util.CommonUtils;
-import com.moonce.util.constant.Code;
-import org.junit.Ignore;
+import com.moonce.blog.doman.User;
+import com.moonce.blog.repository.UserRepository;
+import com.moonce.blog.util.CommonUtils;
+import com.moonce.blog.util.constant.Code;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

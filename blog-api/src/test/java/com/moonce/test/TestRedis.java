@@ -1,7 +1,7 @@
 package com.moonce.test;
 
-import com.moonce.MoonceApplication;
-import com.moonce.doman.User;
+import com.moonce.blog.MoonceApplication;
+import com.moonce.blog.doman.User;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;

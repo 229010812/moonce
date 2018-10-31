@@ -16,7 +16,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.moonce.MoonceApplication</mainClass>
+                    <mainClass>com.moonce.blog.MoonceApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -29,18 +29,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.moonce</groupId>
-            <artifactId>model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.moonce</groupId>
-            <artifactId>persistence</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
 </project>

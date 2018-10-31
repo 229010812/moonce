@@ -1,6 +1,6 @@
 package com.moonce.blog.service;
 
-import com.moonce.doman.vo.Msg;
+import com.moonce.blog.doman.vo.Msg;
 
 import java.util.Date;
 
