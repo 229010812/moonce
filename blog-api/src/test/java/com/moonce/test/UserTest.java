@@ -1,6 +1,6 @@
 package com.moonce.test;
 
-import com.moonce.blog.MoonceApplication;
+import com.moonce.blog.BlogApplication;
 import com.moonce.blog.service.UserService;
 import com.moonce.blog.doman.User;
 import com.moonce.blog.repository.UserRepository;
@@ -17,7 +17,7 @@ import java.util.Date;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@SpringBootTest(classes = MoonceApplication.class)
+@SpringBootTest(classes = BlogApplication.class)
 public class UserTest {
     @Resource
     private UserRepository userRepository;

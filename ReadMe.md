@@ -1,32 +1,20 @@
 # moonce
 
-#### 项目介绍
-moonce项目包含个人博客项目,是一款以Spring Boot为框架的项目,用户可以自主来部署个人博客,博客包含用户登录\发表文章\评论文章.
+## 一丶模块说明
+#### 1.common:公共模块
+* constant:公共静态常量定义
+* util:通用公共方法
+* vo:通用返回结果
+* pojo:通用公共对象
 
-#### 软件架构
-1. Mysql
-2. Spring Boot
-3. Redis
-4. Vue
-#### 安装教程
+#### 2.blog:博客系统
+* blog-api:博客接口
+* blog-web:博客静态页面
 
-1. 安装依赖 JDK1.8 +
-2. 安装Redis和mysql数据库
-3. 创建数据库moooncedb 
-4. 运行编译后的JAR包
-3. 输入 localhost:8080 进行访问
+#### 3.financing:记账系统
+* financing-api:记账系统接口  
+* financing-web:记账系统静态页面
 
-#### 使用说明 
-
-1. 安装依赖 JDK1.8 +
-2. 安装Redis和mysql数据库
-3. 创建数据库moooncedb 
-4. 运行编译后的JAR包
-3. 输入 localhost:8080 进行访问
-
-#### 参与贡献
-
-1. Fork 本项目
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+## 二丶提交格式说明
+()第一部分,填写模块名;第二部分英文说明;[]第三部分中文说明,格式如下
+> (模块名称)英文说明\[中文说明\]

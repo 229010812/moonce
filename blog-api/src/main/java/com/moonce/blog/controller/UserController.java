@@ -1,14 +1,14 @@
 package com.moonce.blog.controller;
 
-import com.moonce.blog.service.UserService;
-import com.moonce.blog.doman.vo.Msg;
 import com.moonce.blog.doman.User;
 import com.moonce.blog.repository.UserRepository;
-import com.moonce.blog.util.CommonUtils;
-import com.moonce.blog.util.EncryptionPWDUtil;
-import com.moonce.blog.util.LogUtils;
-import com.moonce.blog.util.ResultUtil;
-import com.moonce.blog.util.constant.Code;
+import com.moonce.blog.service.UserService;
+import com.moonce.common.constant.Code;
+import com.moonce.common.util.CommonUtils;
+import com.moonce.common.util.EncryptionPWDUtil;
+import com.moonce.common.util.LogUtils;
+import com.moonce.common.util.ResultUtil;
+import com.moonce.common.vo.Msg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +49,7 @@ public class UserController {
     @GetMapping(value = "/sign-in")
     public User signIn(@RequestParam("username") String username,
                        @RequestParam("password") String password){
-        return userService.signIn(username,EncryptionPWDUtil.encode(password));
+        return userService.signIn(username, EncryptionPWDUtil.encode(password));
     }
 
 

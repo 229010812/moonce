@@ -1,11 +1,11 @@
 package com.moonce.blog.controller;
 
 import com.moonce.blog.service.PostsService;
-import com.moonce.blog.doman.vo.Msg;
-import com.moonce.blog.util.CommonUtils;
-import com.moonce.blog.util.LogUtils;
-import com.moonce.blog.util.ResultUtil;
-import com.moonce.blog.util.constant.Code;
+import com.moonce.common.constant.Code;
+import com.moonce.common.util.CommonUtils;
+import com.moonce.common.util.LogUtils;
+import com.moonce.common.util.ResultUtil;
+import com.moonce.common.vo.Msg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -104,7 +104,7 @@ public class PostsController {
                         @RequestParam(name = "commentCount",required = false,defaultValue = "0") Long commentCount
     ){
         try {
-            return postsService.updatePosts(id,postAuthorID,postContent,postTitle,postExcerpt,termTaxonomyID,postStatus,commentStatus,postPassword,postName,postParent,guid,menuOrder,postType,commentCount,CommonUtils.stringCastToDate(postDate,Code.YYYY_MM_DD_HH_MM_SS));
+            return postsService.updatePosts(id,postAuthorID,postContent,postTitle,postExcerpt,termTaxonomyID,postStatus,commentStatus,postPassword,postName,postParent,guid,menuOrder,postType,commentCount, CommonUtils.stringCastToDate(postDate,Code.YYYY_MM_DD_HH_MM_SS));
         }catch (Exception e){
             logger.error(LogUtils.getException(e));
         }

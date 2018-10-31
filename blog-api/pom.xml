@@ -16,7 +16,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.moonce.blog.MoonceApplication</mainClass>
+                    <mainClass>com.moonce.blog.BlogApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>

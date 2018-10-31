@@ -1,8 +1,8 @@
 package com.moonce.blog.service;
 
 
-import com.moonce.blog.doman.vo.Msg;
 import com.moonce.blog.doman.User;
+import com.moonce.common.vo.Msg;
 
 public interface UserService {
     User signIn(String username, String password);

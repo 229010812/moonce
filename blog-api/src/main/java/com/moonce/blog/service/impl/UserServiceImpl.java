@@ -1,16 +1,16 @@
 package com.moonce.blog.service.impl;
 
 import com.moonce.blog.service.UserService;
-import com.moonce.blog.doman.vo.Msg;
 import com.moonce.blog.doman.User;
 import com.moonce.blog.doman.UserVerification;
-import com.moonce.blog.doman.vo.PageVo;
 import com.moonce.blog.repository.UserRepository;
 import com.moonce.blog.repository.UserVerificationRepository;
-import com.moonce.blog.util.CommonUtils;
-import com.moonce.blog.util.EncryptionPWDUtil;
-import com.moonce.blog.util.ResultUtil;
-import com.moonce.blog.util.constant.Code;
+import com.moonce.common.constant.Code;
+import com.moonce.common.util.CommonUtils;
+import com.moonce.common.util.EncryptionPWDUtil;
+import com.moonce.common.util.ResultUtil;
+import com.moonce.common.vo.Msg;
+import com.moonce.common.vo.PageVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Msg userListPage(Integer pageNum, Integer pageSize) {
-        Pageable pageable = new PageRequest(pageNum-1,pageSize);
+        Pageable pageable = PageRequest.of(pageNum-1,pageSize);
         Page<User> userList = userRepository.findByUserLoginLike("%", pageable);
         PageVo pageVo = new PageVo(userList);
         System.out.println(ResultUtil.success(pageVo).toString());

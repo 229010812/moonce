@@ -1,6 +1,6 @@
 package com.moonce.test;
 
-import com.moonce.blog.MoonceApplication;
+import com.moonce.blog.BlogApplication;
 import com.moonce.blog.doman.User;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@SpringBootTest(classes = MoonceApplication.class)
+@SpringBootTest(classes = BlogApplication.class)
 public class TestRedis {
     @Resource
     private StringRedisTemplate stringRedisTemplate;
