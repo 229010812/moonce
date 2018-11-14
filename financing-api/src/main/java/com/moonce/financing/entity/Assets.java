@@ -4,9 +4,12 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity(name = "assets")
-public class assets {
-    public assets() {
+/**
+ * 资产信息
+ */
+@Entity(name = "f_assets")
+public class Assets {
+    public Assets() {
     }
 
     @Id
@@ -35,7 +38,7 @@ public class assets {
 
     @Override
     public String toString() {
-        return "assets{" +
+        return "Assets{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", imgName='" + imgName + '\'' +
