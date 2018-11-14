@@ -17,4 +17,8 @@ public interface RecordService {
     Page<Record> page(Pageable pageable);
 
     void delete(Integer id);
+
+    void add(Record record);
+
+    void update(Record record);
 }

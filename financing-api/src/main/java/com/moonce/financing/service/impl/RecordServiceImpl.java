@@ -1,5 +1,6 @@
 package com.moonce.financing.service.impl;
 
+import com.moonce.common.util.UpdateTool;
 import com.moonce.financing.entity.Record;
 import com.moonce.financing.repository.RecordRepository;
 import com.moonce.financing.service.RecordService;
@@ -43,5 +44,19 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public void delete(Integer id) {
         recordRepository.deleteById(id);
+    }
+
+    @Override
+    public void add(Record record) {
+        recordRepository.save(record);
+    }
+
+    @Override
+    public void update(Record record) {
+        if(record.getId() != null){
+            Optional<Record> source = recordRepository.findById(record.getId());
+            UpdateTool.copyNullProperties(source.get(),record);
+            recordRepository.save(record);
+        }
     }
 }
