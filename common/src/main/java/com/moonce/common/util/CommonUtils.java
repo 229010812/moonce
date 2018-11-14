@@ -1,6 +1,7 @@
 package com.moonce.common.util;
 
 import com.moonce.common.constant.Code;
+import io.netty.util.internal.StringUtil;
 
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
@@ -69,4 +70,7 @@ public class CommonUtils {
     }
 
 
+    public static boolean isNullOrEmpty(String s) {
+        return s == null || s.isEmpty();
+    }
 }

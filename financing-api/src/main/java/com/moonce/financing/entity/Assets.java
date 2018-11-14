@@ -36,6 +36,11 @@ public class Assets {
     @Column(name = "init_money")
     private BigDecimal init_money;
 
+    public Assets(Integer id, String money) {
+        this.id = id;
+        this.money = new BigDecimal(money);
+    }
+
     @Override
     public String toString() {
         return "Assets{" +

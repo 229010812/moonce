@@ -1,5 +1,9 @@
 package com.moonce.financing.entity;
 
+import com.moonce.common.constant.Code;
+import com.moonce.common.util.CommonUtils;
+import io.netty.util.internal.StringUtil;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -27,6 +31,14 @@ public class AssetsTransferRecord {
     private BigDecimal money;
 
     public AssetsTransferRecord() {
+    }
+
+    public AssetsTransferRecord(Integer assetsIdFrom, Integer assetsIdTo, String money,String time,  String remark) {
+        this.time = CommonUtils.isNullOrEmpty(time)?new Date():CommonUtils.stringCastToDate(time, Code.YYYY_MM_DD);
+        this.assetsIdFrom = assetsIdFrom;
+        this.assetsIdTo = assetsIdTo;
+        this.remark = remark;
+        this.money = new BigDecimal(money);
     }
 
     public Integer getId() {

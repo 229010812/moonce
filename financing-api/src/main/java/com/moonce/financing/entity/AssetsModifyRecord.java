@@ -30,6 +30,12 @@ public class AssetsModifyRecord {
     public AssetsModifyRecord() {
     }
 
+    public AssetsModifyRecord(Integer assetsId, BigDecimal moneyBefore, BigDecimal money) {
+        this.assetsId = assetsId;
+        this.moneyBefore = moneyBefore;
+        this.money = money;
+    }
+
     public Integer getId() {
         return id;
     }
