@@ -1,10 +1,11 @@
 package com.moonce.financing.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity(name = "f_label")
-public class Label {
+public class Label  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
     @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")

@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,8 +43,10 @@ public class AssetsController {
      */
     @PostMapping("/add")
     public Msg save(Assets asset){
+        asset.setInitMoney(asset.getMoney());
+        asset.setCreateTime(new Date());
         assetsService.save(asset);
-        return ResultUtil.success();
+        return ResultUtil.success(asset);
     }
     /**
      * 修改资产账户
@@ -62,17 +66,17 @@ public class AssetsController {
      * @param money
      * @return
      */
-    @PutMapping("/update-money")
-    public Msg updateMoney(Integer id,String money){
+    @PostMapping("/update-money")
+    public Msg updateMoney(Integer id,BigDecimal money){
         Assets assets = new Assets(id,money);
         if(assets.getId() != null){
-            Assets source = assetsService.get(assets.getId());
+            Assets source = assetsService.get(id);
+            AssetsModifyRecord assetsModifyRecord = new AssetsModifyRecord(id,source.getMoney(),assets.getMoney(),0,new Date());
             UpdateTool.copyNullProperties(source,assets);
             assetsService.save(assets);
-            AssetsModifyRecord assetsModifyRecord = new AssetsModifyRecord(id,source.getMoney(),assets.getMoney());
             assetsModifyRecordService.save(assetsModifyRecord);
         }
-        return ResultUtil.success();
+        return ResultUtil.success(assets);
     }
 
     /**
@@ -86,14 +90,19 @@ public class AssetsController {
      */
     @PostMapping("/transfer")
     @Transactional
-    public Msg transfer(Integer assetsIdFrom,Integer assetsIdTo,String money,String time,String remark){
-        AssetsTransferRecord assetsTransferRecord = new AssetsTransferRecord(assetsIdFrom,assetsIdTo,money,time,remark);
+    public Msg transfer(Integer assetsIdFrom,Integer assetsIdTo,BigDecimal money,String time,String remark){
+        AssetsTransferRecord assetsTransferRecord = new AssetsTransferRecord(assetsIdFrom,assetsIdTo,money,time,remark,0,new Date());
         assetsTransferRecordService.save(assetsTransferRecord);
-        Assets asset = new Assets(assetsIdFrom,"-"+money);
+
+        Assets source = assetsService.get(assetsIdFrom);
+        Assets asset = new Assets(assetsIdFrom,source.getMoney().subtract(money));
+        UpdateTool.copyNullProperties(source,asset);
         assetsService.save(asset);
-        asset = new Assets(assetsIdTo,money);
+        source = assetsService.get(assetsIdTo);
+        asset = new Assets(assetsIdTo,source.getMoney().add(money));
+        UpdateTool.copyNullProperties(source,asset);
         assetsService.save(asset);
-        return ResultUtil.success();
+        return ResultUtil.success(assetsTransferRecord);
     }
 
     /**
@@ -116,7 +125,8 @@ public class AssetsController {
      */
     @DeleteMapping("/del")
     public Msg delete(Integer id){
-        assetsService.delete(id);
+        Assets a = new Assets(id,1);
+        assetsService.update(a);
         return ResultUtil.success();
     }
 

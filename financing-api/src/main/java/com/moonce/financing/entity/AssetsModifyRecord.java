@@ -1,11 +1,12 @@
 package com.moonce.financing.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity(name = "f_assets_modify_record")
-public class AssetsModifyRecord {
+public class AssetsModifyRecord  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
     @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")
@@ -31,6 +32,14 @@ public class AssetsModifyRecord {
     }
 
     public AssetsModifyRecord(Integer assetsId, BigDecimal moneyBefore, BigDecimal money) {
+        this.assetsId = assetsId;
+        this.moneyBefore = moneyBefore;
+        this.money = money;
+    }
+
+    public AssetsModifyRecord(Integer assetsId, BigDecimal moneyBefore, BigDecimal money,Integer state, Date createTime) {
+        this.state = state;
+        this.createTime = createTime;
         this.assetsId = assetsId;
         this.moneyBefore = moneyBefore;
         this.money = money;

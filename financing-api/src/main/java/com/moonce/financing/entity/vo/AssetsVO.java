@@ -1,4 +1,7 @@
-package com.moonce.financing.entity;
+package com.moonce.financing.entity.vo;
+
+import com.moonce.financing.entity.Assets;
+import com.moonce.financing.entity.Record;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,47 +12,36 @@ import java.util.List;
 /**
  * 资产信息
  */
-@Entity(name = "f_assets")
-public class Assets implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
-    @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")
-    @Column(name = "id")
+public class AssetsVO implements Serializable {
     private Integer id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "img_name")
     private String imgName;
-    @Column(name = "type")
     private Integer type;
-    @Column(name = "state")
     private Integer state = 0;
-    @Column(name = "remark")
     private String remark;
-    @Column(name = "create_time")
     private Date createTime;
-    @Column(name = "money")
     private BigDecimal money;
-    @Column(name = "ranking")
     private Integer ranking;
-    @Column(name = "init_money")
     private BigDecimal initMoney;
+    private List<RecordVO> recordList;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name="assetsId",referencedColumnName = "id")
-    private List<Record> recordList;
-
-    public Assets(Integer id, BigDecimal money) {
-        this.id = id;
-        this.money = money;
+    public AssetsVO(Assets assets) {
+        this.id = assets.getId();
+        this.name = assets.getName();
+        this.imgName = assets.getImgName();
+        this.type = assets.getType();
+        this.state = assets.getState();
+        this.remark = assets.getRemark();
+        this.createTime = assets.getCreateTime();
+        this.money = assets.getMoney();
+        this.ranking = assets.getRanking();
+        this.initMoney = assets.getMoney();
+//        this.recordList = RecordVO.getList(assets.getRecordList());
     }
-    public Assets(Integer id, Integer state) {
-        this.id = id;
-        this.state = state;
-    }
 
-    public Assets() {
+
+
+    public AssetsVO() {
     }
 
     @Override
@@ -68,11 +60,11 @@ public class Assets implements Serializable {
                 '}';
     }
 
-    public List<Record> getRecordList() {
+    public List<RecordVO> getRecordList() {
         return recordList;
     }
 
-    public void setRecordList(List<Record> recordList) {
+    public void setRecordList(List<RecordVO> recordList) {
         this.recordList = recordList;
     }
 

@@ -1,40 +1,40 @@
-package com.moonce.financing.entity;
+package com.moonce.financing.entity.vo;
+
+import com.moonce.financing.entity.Record;
+import com.moonce.financing.entity.RecordType;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity(name = "f_record_type")
-public class RecordType implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
-    @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")
-    @Column(name = "id")
+public class RecordTypeVO implements Serializable {
     private Integer id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "img_name")
     private String imgName;
-    @Column(name = "type")
     private Integer type;
-    @Column(name = "ranking")
     private Integer ranking;
-    @Column(name = "state")
     private Integer state;
+    private List<RecordVO> recordList;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name="recordTypeId1",referencedColumnName = "id")
-    private List<Record> recordList;
+    public RecordTypeVO(RecordType recordType) {
+        this.id = recordType.getId();
+        this.name = recordType.getName();
+        this.imgName = recordType.getImgName();
+        this.type = recordType.getType();
+        this.ranking = recordType.getRanking();
+        this.state = recordType.getState();
+        this.recordList = RecordVO.getList(recordType.getRecordList());
+    }
 
-    public List<Record> getRecordList() {
+    public List<RecordVO> getRecordList() {
         return recordList;
     }
 
-    public void setRecordList(List<Record> recordList) {
+    public void setRecordList(List<RecordVO> recordList) {
         this.recordList = recordList;
     }
 
-    public RecordType() {
+    public RecordTypeVO() {
     }
 
     public Integer getId() {

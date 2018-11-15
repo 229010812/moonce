@@ -5,11 +5,12 @@ import com.moonce.common.util.CommonUtils;
 import io.netty.util.internal.StringUtil;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity(name = "f_assets_transfer_record")
-public class AssetsTransferRecord {
+public class AssetsTransferRecord  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "roleSeq")
     @TableGenerator(name = "roleSeq", allocationSize = 1, table = "seq_table", pkColumnName = "seq_id", valueColumnName = "seq_count")
@@ -39,6 +40,15 @@ public class AssetsTransferRecord {
         this.assetsIdTo = assetsIdTo;
         this.remark = remark;
         this.money = new BigDecimal(money);
+    }
+    public AssetsTransferRecord(Integer assetsIdFrom, Integer assetsIdTo, BigDecimal money,String time,  String remark,Integer state,Date createTime) {
+        this.time = CommonUtils.isNullOrEmpty(time)?new Date():CommonUtils.stringCastToDate(time, Code.YYYY_MM_DD);
+        this.assetsIdFrom = assetsIdFrom;
+        this.assetsIdTo = assetsIdTo;
+        this.remark = remark;
+        this.money = money;
+        this.state = state;
+        this.createTime = createTime;
     }
 
     public Integer getId() {
