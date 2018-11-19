@@ -30,15 +30,15 @@ public class RecordTypeServiceImpl implements RecordTypeService {
 
     @Override
     public List<RecordType> list(RecordType recordType) {
-
         Example<RecordType> e = Example.of(recordType);
         Sort s = new Sort(Sort.Direction.ASC,"ranking");
         return recordTypeRepository.findAll(e,s);
     }
 
     @Override
-    public Page<RecordType> page(Pageable pageable) {
-        return recordTypeRepository.findAll(pageable);
+    public Page<RecordType> page(RecordType recordType,Pageable pageable) {
+        Example<RecordType> example = Example.of(recordType);
+        return recordTypeRepository.findAll(example,pageable);
     }
 
     @Override

@@ -55,7 +55,10 @@ public class AssetsController {
      */
     @PutMapping("/update")
     public Msg update(Assets asset){
+        Integer id = asset.getId();
+        Assets source = assetsService.get(id);
         asset.setMoney(null);
+        UpdateTool.copyNullProperties(source,asset);
         assetsService.update(asset);
         return ResultUtil.success();
     }

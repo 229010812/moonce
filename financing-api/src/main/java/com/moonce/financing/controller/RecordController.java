@@ -21,8 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/record")
 public class RecordController {
-    @Autowired
-    private RecordTypeService recordTypeService;
+
     @Autowired
     private AssetsService assetsService;
 

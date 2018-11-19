@@ -14,7 +14,7 @@ public interface RecordTypeService {
 
     List<RecordType> list(RecordType recordType);
 
-    Page<RecordType> page(Pageable pageable);
+    Page<RecordType> page(RecordType recordType,Pageable pageable);
 
     void delete(Integer id);
 }
