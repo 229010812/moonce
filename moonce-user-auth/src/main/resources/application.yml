@@ -1,0 +1,12 @@
+#配置选择(dev开发环境  issue发布环境)
+spring:
+  profiles:
+    active: dev
+# 日志配置(logback-spring.xml可不写config)
+logging:
+  config: classpath:logback-spring.xml
+
+# snowflake生成ID算法配置
+snowflake:
+  worker-id: 1 # 工作ID (0~31)
+  data-center-id: 2 #数据中心ID (0~31)

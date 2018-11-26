@@ -17,9 +17,10 @@
 *.ipr
 #### 编译文件
 target/
-blog-api/target/
-model/target/
-persistence/target/
+moonce-blog-api/target/
+moonce-bookkeeping-api/target/
+moonce-user-auth/target/
+user/target/
 
 ### NetBeans ###
 /nbproject/private/
