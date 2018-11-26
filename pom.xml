@@ -7,11 +7,14 @@
     <artifactId>moonce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
+        <!--公共模块-->
+        <module>moonce-common</module>
         <!--博客模块-->
-        <module>blog-api</module>
-        <!--数据持久层-->
-        <module>financing-api</module>
-        <module>common</module>
+        <module>moonce-blog-api</module>
+        <!--记账模块-->
+        <module>moonce-bookkeeping-api</module>
+        <!--用户验证模块-->
+        <module>moonce-user-auth</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -32,11 +35,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.moonce</groupId>
-            <artifactId>common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -67,6 +65,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- 数据库加密 -->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>2.1.0</version>
         </dependency>
 
     </dependencies>

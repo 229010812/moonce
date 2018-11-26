@@ -15,7 +15,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #默认为MyISAM,无法实现事务
   mybatis:
     mapper-locations: classpath:mapping/*Mapper.xml
-    type-aliases-package: com.moonce.financing.entity
+    type-aliases-package: com.moonce.bookkeeping.entity
   redis:
     port: 6379
     host: 127.0.0.1

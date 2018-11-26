@@ -1,12 +1,12 @@
-package com.moonce.user;
+package com.moonce.bookkeeping;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-public class UserApplication {
+public class BookkeepingApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(UserApplication.class, args);
+        SpringApplication.run(BookkeepingApplication.class, args);
     }
 }

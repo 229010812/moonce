@@ -3,7 +3,7 @@ package com.moonce.user.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name = "u_account")
+@Entity(name = "user")
 public class Account implements Serializable {
     @Id
     @Column(name = "id")

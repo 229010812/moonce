@@ -1,6 +1,8 @@
 package com.moonce.user;
 
-import com.moonce.user.util.id.IdWorker;
+import com.moonce.common.util.CommonUtils;
+import com.moonce.user.util.IdWorker;
+import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +16,13 @@ import java.util.Date;
 public class UserApplicationTests {
 
     @Autowired
-    private IdWorker idWorker;
+    StringEncryptor stringEncryptor;
 
     @Test
-    public void contextLoads() {
-        long time = new Date().getTime();
-//        IdWorker idWorker = new IdWorker(0, 0);
-        for (int i = 0; i < 100; i++) {
-            long id = idWorker.nextId();
-            System.out.println(id);
-        }
-
-        System.out.println(time - new Date().getTime());
+    public void encryptPwd() {
+        System.out.println(CommonUtils.getMD5("马路遥"));
+        String result = stringEncryptor.encrypt("MLYCloud1788%");
+        System.out.println(result);
     }
 
 }

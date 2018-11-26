@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>blog-api</artifactId>
+    <artifactId>moonce-blog-api</artifactId>
+
     <build>
         <plugins>
             <plugin>
@@ -30,4 +31,11 @@
         </plugins>
     </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.moonce</groupId>
+            <artifactId>moonce-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

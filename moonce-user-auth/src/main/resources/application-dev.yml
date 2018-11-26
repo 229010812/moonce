@@ -7,15 +7,11 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://118.24.222.227/test_user_auth?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
-    password: MLYCloud1788%
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #默认为MyISAM,无法实现事务
+    password: ENC(iKrmaqdTQtVTn17dY3ggmvzmIj4tv+T9)
+
   mybatis:
     mapper-locations: classpath:mapping/*Mapper.xml
-    type-aliases-package: com.moonce.financing.entity
+    type-aliases-package: com.moonce.bookkeeping.entity
   redis:
     port: 6379
     host: 127.0.0.1
@@ -23,3 +19,10 @@ spring:
     jedis:
       pool:
         max-active: 0
+# snowflake生成ID算法配置
+snowflake:
+  worker-id: 0 # 工作ID (0~31)
+  data-center-id: 0 #数据中心ID (0~31)
+# 自定义前缀
+database:
+  prefix: test_

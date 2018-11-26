@@ -9,10 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>financing-api</artifactId>
+    <artifactId>moonce-bookkeeping-api</artifactId>
     <packaging>jar</packaging>
 
-    <name>financing-api</name>
     <description>记账项目</description>
 
     <build>
@@ -20,9 +19,26 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.moonce.bookkeeping.BookkeepingApplication</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.moonce</groupId>
+            <artifactId>moonce-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
